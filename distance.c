@@ -34,12 +34,18 @@ case -3: fprintf(stderr, "%s: %s caused negative overflow\n", argv[0], str); got
 case -4: fprintf(stderr, "%s: %s caused underflow\n", argv[0], str); goto num ## end; \
       num ## end: exit(EXIT_FAILURE); } } while (0)
 
+static long double deg2rad(long double deg)
+{
+   return (deg / 180.0) * M_PI;
+}
+
 int main(int argc, char *argv[])
 {
     long double radius, lat1, long1, lat2, long2;
 
     if (argc != 6) {
         puts("distance radius lat1 long1 lat2 long2");
+        puts("Latitude and longitude in degrees");
         return 0;
     }
 
@@ -49,7 +55,7 @@ int main(int argc, char *argv[])
     get_ld(argv[4], lat2);
     get_ld(argv[5], long2);
 
-    printf("%.*Lg\n", LDBL_DIG, lddist(radius, lat1, long1, lat2, long2));
+    printf("%.*Lg\n", LDBL_DIG, lddist(radius, deg2rad(lat1), deg2rad(long1), deg2rad(lat2), deg2rad(long2)));
 
     return 0;
 }
