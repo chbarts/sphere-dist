@@ -16,7 +16,7 @@ distance: distance.o versine.o haversine.o dist.o
 	$(CC) -o distance distance.o versine.o haversine.o dist.o -lm
 
 distance-neon: distance-neon.o versine-neon.o haversine-neon.o dist-neon.o
-	$(CC) -o distance distance-neon.o versine-neon.o haversine-neon.o dist-neon.o -lm
+	$(CC) -o distance-neon distance-neon.o versine-neon.o haversine-neon.o dist-neon.o -lm
 
 clean:
 	rm distance *.o
